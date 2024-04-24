@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Simple_API_Assessment.Data;
+using Simple_API_Assessment.Data.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddScoped<IApplicantRepository, ApplicantRepo>();
 builder.Services.AddControllers();
 builder.Services.AddDbContext<DataContext>(option =>
 {

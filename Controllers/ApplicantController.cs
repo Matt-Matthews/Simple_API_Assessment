@@ -5,7 +5,7 @@ using Simple_API_Assessment.Models;
 namespace Simple_API_Assessment.Controllers
 {
     [ApiController]
-    [Route("api/applicant")]
+    [Route("api/[controller]")]
     public class ApplicantController : ControllerBase
     {
         private readonly IApplicantRepository applicantRepo;
@@ -16,7 +16,7 @@ namespace Simple_API_Assessment.Controllers
         }
 
         ///// - Applicant end points - \\\\\\
-        [HttpPost]
+        [HttpPost("/applicants")]
         public async Task<ActionResult> AddApplicant(Applicant applicant)
         {
             try
@@ -30,7 +30,7 @@ namespace Simple_API_Assessment.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("/applicants")]
         public async Task<ActionResult<List<Applicant>>> GetAllApplicants()
         {
             try
@@ -45,7 +45,7 @@ namespace Simple_API_Assessment.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("/applicants/{id}")]
         public async Task<ActionResult<Applicant>> GetApplicant(int id)
         {
             try
@@ -60,12 +60,12 @@ namespace Simple_API_Assessment.Controllers
             }
         }
 
-        [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateApplicant(int id)
+        [HttpPut("/applicants")]
+        public async Task<ActionResult> UpdateApplicant(Applicant applicant)
         {
             try
             {
-                await applicantRepo.UpdateApplicant(id);
+                await applicantRepo.UpdateApplicant(applicant);
                 return NoContent();
             }
             catch (Exception e)
@@ -74,7 +74,7 @@ namespace Simple_API_Assessment.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("/applicants/{id}")]
         public async Task<ActionResult> DeleteApplicant(int id)
         {
             try
@@ -133,12 +133,12 @@ namespace Simple_API_Assessment.Controllers
             }
         }
 
-        [HttpPut("/skills/{id}")]
-        public async Task<ActionResult> UpdateSkill(int id)
+        [HttpPut("/skills")]
+        public async Task<ActionResult> UpdateSkill(Skill skill)
         {
             try
             {
-                await applicantRepo.UpdateSkill(id);
+                await applicantRepo.UpdateSkill(skill);
                 return NoContent();
             }
             catch (Exception e)
