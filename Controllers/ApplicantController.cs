@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Simple_API_Assessment.Data.Repository;
+using Simple_API_Assessment.Models;
 
 namespace Simple_API_Assessment.Controllers
 {
@@ -6,6 +8,159 @@ namespace Simple_API_Assessment.Controllers
     [Route("api/applicant")]
     public class ApplicantController : ControllerBase
     {
-        
+        private readonly IApplicantRepository applicantRepo;
+
+        public ApplicantController(IApplicantRepository applicantRepository)
+        {
+            applicantRepo = applicantRepository;
+        }
+
+        ///// - Applicant end points - \\\\\\
+        [HttpPost]
+        public async Task<ActionResult> AddApplicant(Applicant applicant)
+        {
+            try
+            {
+                await applicantRepo.AddApplicant(applicant);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<Applicant>>> GetAllApplicants()
+        {
+            try
+            {
+                var applicants = await applicantRepo.GetApplicants();
+                if(applicants.Count == 0) return NotFound();
+                return Ok(applicants);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Applicant>> GetApplicant(int id)
+        {
+            try
+            {
+                var applicant = await applicantRepo.GetApplicantById(id);
+                if (applicant == null) return NotFound(applicant);
+                return Ok(applicant);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateApplicant(int id)
+        {
+            try
+            {
+                await applicantRepo.UpdateApplicant(id);
+                return NoContent();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteApplicant(int id)
+        {
+            try
+            {
+                await applicantRepo.DeleteApplicant(id);
+                return NoContent();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        //////// - Skills end points - \\\\\\\\
+        [HttpPost("/skills")]
+        public async Task<ActionResult> Addskill(Skill skill)
+        {
+            try
+            {
+                await applicantRepo.AddSkill(skill);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("/skills")]
+        public async Task<ActionResult<List<Skill>>> GetAllSkills()
+        {
+            try
+            {
+                var skills = await applicantRepo.GetSkills();
+                if(skills.Count == 0) return NotFound(skills);
+                return Ok(skills);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("/skills/{id}")]
+        public async Task<ActionResult<Skill>> GetSkill(int id)
+        {
+            try
+            {
+                var skill = await applicantRepo.GetSkillById(id);
+                if(skill == null) return NotFound();
+                return Ok(skill);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpPut("/skills/{id}")]
+        public async Task<ActionResult> UpdateSkill(int id)
+        {
+            try
+            {
+                await applicantRepo.UpdateSkill(id);
+                return NoContent();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpDelete("/skills/{id}")]
+        public async Task<ActionResult> DeleteSkill(int id)
+        {
+            try
+            {
+                await applicantRepo.DeleteSkill(id);
+                return NoContent();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
     }
+
 }
