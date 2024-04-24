@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Simple_API_Assessment.Models;
 
 namespace Simple_API_Assessment.Data
 {
@@ -8,5 +9,7 @@ namespace Simple_API_Assessment.Data
         {
 
         }
+        public DbSet<Applicant> Applicants { get; set; }
+        public DbSet<Skill> Skills { get; set; }
     }
 }
