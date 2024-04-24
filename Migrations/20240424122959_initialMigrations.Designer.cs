@@ -12,7 +12,7 @@ using Simple_API_Assessment.Data;
 namespace Simple_API_Assessment.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240424115302_initialMigrations")]
+    [Migration("20240424122959_initialMigrations")]
     partial class initialMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,9 +26,11 @@ namespace Simple_API_Assessment.Migrations
 
             modelBuilder.Entity("Simple_API_Assessment.Models.Applicant", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .HasColumnType("text");
@@ -40,12 +42,14 @@ namespace Simple_API_Assessment.Migrations
 
             modelBuilder.Entity("Simple_API_Assessment.Models.Skill", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
 
-                    b.Property<Guid?>("ApplicantId")
-                        .HasColumnType("uuid");
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("ApplicantId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Name")
                         .HasColumnType("text");

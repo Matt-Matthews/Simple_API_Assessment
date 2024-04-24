@@ -13,11 +13,13 @@ builder.Services.AddDbContext<DataContext>(option =>
 
 var app = builder.Build();
 
+try{
+    DBInitializer.InitDb(app);
 
-
-// app.UseHttpsRedirection();
-
-// app.UseAuthorization();
+}catch (Exception e)
+{
+    Console.WriteLine(e);
+}
 
 app.MapControllers();
 
