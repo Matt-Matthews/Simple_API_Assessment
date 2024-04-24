@@ -58,14 +58,16 @@ namespace Simple_API_Assessment.Data.Repository
             return await _context.Skills.ToListAsync();
         }
 
-        public async Task UpdateApplicant(Applicant applicant)
+        public async Task UpdateApplicant(int id)
         {
+            var applicant = await _context.Applicants.FindAsync(id);
             _context.Applicants.Update(applicant);
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateSkill(Skill skill)
+        public async Task UpdateSkill(int id)
         {
+            var skill = await _context.Skills.FindAsync(id);
             _context.Skills.Update(skill);
             await _context.SaveChangesAsync();
         }
