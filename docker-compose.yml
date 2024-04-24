@@ -1,0 +1,11 @@
+services:
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_USER=Simple_API_user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=Simple_API_DB
+    ports:
+      - 5432:5432
+    volumes:
+      - /var/lib/postgresql/data
