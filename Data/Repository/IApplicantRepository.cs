@@ -12,7 +12,7 @@ namespace Simple_API_Assessment.Data.Repository
         Task DeleteApplicant(int id);
 
         //for skills
-        Task AddSkill(Skill skill);
+        Task AddSkill(Skill skill, int id);
         Task<List<Skill>> GetSkills();
         Task<Skill> GetSkillById(int id);
         Task UpdateSkill(Skill skill);

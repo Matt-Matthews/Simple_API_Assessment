@@ -89,12 +89,12 @@ namespace Simple_API_Assessment.Controllers
         }
 
         //////// - Skills end points - \\\\\\\\
-        [HttpPost("/skills")]
-        public async Task<ActionResult> Addskill(Skill skill)
+        [HttpPost("/skills/{id}")]
+        public async Task<ActionResult> Addskill(Skill skill, int id)
         {
             try
             {
-                await applicantRepo.AddSkill(skill);
+                await applicantRepo.AddSkill(skill, id);
                 return Ok();
             }
             catch (Exception e)
