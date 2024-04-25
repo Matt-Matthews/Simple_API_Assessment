@@ -3,6 +3,12 @@
 ## Url
 
 - http://localhost:5000
+* dotnet run
+
+## Database
+
+- Postgresql Docker container
+* Run docker compose up -d
 
 ## End points and Paths
 
