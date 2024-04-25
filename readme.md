@@ -1,14 +1,18 @@
 # Simple_API_Assessment
 
-## Url
+## SEEDING Database
 
-- http://localhost:5000
-* dotnet run
+- On open the API will add an applicant named Mathews with three (3) skills to the database using the DBInitializer class
 
 ## Database
 
 - Postgresql Docker container
 * Run docker compose up -d
+
+## API Url - Must run Docker first for the API to seed data into the database
+
+- http://localhost:5000
+* dotnet run
 
 ## End points and Paths
 
